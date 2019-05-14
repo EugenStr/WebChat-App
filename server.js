@@ -16,11 +16,11 @@ const loginRoutes = require('./api/routes/Login')
 const homeRoutes = require('./api/routes/home')
 
 const port = process.env.PORT || 5000
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true';
 
 mongoose.connect(mongoURI, {useNewUrlParser: true})
 
- 
+
 app.use(cors({
   origin: true,
   credentials: true,
