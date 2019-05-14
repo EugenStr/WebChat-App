@@ -2,7 +2,7 @@ import React from 'react';
 import ChatInput from './ChatInput';
 import MessagesList from './MessagesList';
 import openSocket from 'socket.io-client';
-const socket = openSocket('https://webchat-app.herokuapp.com/');
+const socket = openSocket('/');
 
 class Chat extends React.Component {
   constructor(props) {
