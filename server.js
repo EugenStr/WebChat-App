@@ -11,22 +11,19 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const socket = require('socket.io')
 
+const registerRoutes = require('./api/routes/Register')
+const loginRoutes = require('./api/routes/Login')
+const homeRoutes = require('./api/routes/home')
 
 const {
   PORT =  5000,
-  NODE_ENV = 'development',
+  NODE_ENV = 'production',
 
   SESS_NAME = 'sid',
   SESS_SECRET = 'xanorp',
   MONGO_URL = 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
-
 } = process.env
 
-const IN_PROD = NODE_ENV === 'production';
-
-const registerRoutes = require('./api/routes/Register')
-const loginRoutes = require('./api/routes/Login')
-const homeRoutes = require('./api/routes/home')
 
 mongoose.connect(MONGO_URL, {useNewUrlParser: true})
 
@@ -35,6 +32,9 @@ app.use(cors({
   origin: true,
   credentials: true,
 }))
+
+
+const MONGO = MONGO_URL
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -48,10 +48,10 @@ app.use(session({
   cookie: {
       maxAge: 60 * 60 * 24 * 100,
       sameSite: true,
-      secure: IN_PROD
+      secure: false
   },
   store: new MongoStore({
-    url:  MONGO_URL,
+    url: MONGO_URL,
     ttl: 60 * 60 * 24 * 100
   }),
 
