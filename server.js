@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan')
 const mongoose = require('mongoose')
@@ -13,7 +14,7 @@ const socket = require('socket.io')
 
 const {
   PORT =  5000,
-  NODE_ENV = 'production',
+  NODE_ENV = 'development',
 
   SESS_NAME = 'sid',
   SESS_SECRET = 'xanorp',
@@ -55,13 +56,14 @@ app.use(session({
 
 
 }))
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(morgan('dev'));
-
 app.use('/register', registerRoutes)
 app.use('/login', loginRoutes)
 app.use('/home', homeRoutes)
-
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.use((req, res, next) => {
   const error = new Error('Not Found');
