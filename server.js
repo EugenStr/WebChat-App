@@ -76,7 +76,7 @@ const server = app.listen(port, () => console.log(`Server running on port ${port
 
 //Websocket
 const io = socket(server)
-
+  
 io.on('connection', socket => {
   console.log('io connection', socket.id)
   socket.on('chat', data => {
