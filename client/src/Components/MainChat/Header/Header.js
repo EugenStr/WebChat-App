@@ -50,7 +50,7 @@ export default class Header extends React.Component {
   }
 
   handleLogout() {
-    fetch('http://localhost:5000/login/logout', {
+    fetch('/login/logout', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

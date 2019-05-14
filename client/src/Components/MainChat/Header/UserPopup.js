@@ -40,7 +40,7 @@ class UserPopup extends React.Component {
       else {
         avatar = this.props.avatar
       }
-    fetch('http://localhost:5000/home/profile', {
+    fetch('/home/profile', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
