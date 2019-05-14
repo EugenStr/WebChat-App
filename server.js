@@ -15,15 +15,11 @@ const registerRoutes = require('./api/routes/Register')
 const loginRoutes = require('./api/routes/Login')
 const homeRoutes = require('./api/routes/home')
 
-const {
-  PORT =  5000,
-  NODE_ENV = 'production',
+const PORT = process.env.PORT || 5000
+const NODE_ENV = process.env.NODE_ENV || 'development'
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
 
-  SESS_NAME = 'sid',
-  SESS_SECRET = 'xanorp',
-  MONGO_URL = 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
-} = process.env
-
+console.log(MONGO_URL)
 
 mongoose.connect(MONGO_URL, {useNewUrlParser: true})
 
@@ -41,10 +37,10 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 app.use(session({
-  name: SESS_NAME,
+  name: 'sid',
   resave: false,
   saveUninitialized: false,
-  secret: SESS_SECRET,
+  secret: 'xanorp',
   cookie: {
       maxAge: 60 * 60 * 24 * 100,
       sameSite: true,
