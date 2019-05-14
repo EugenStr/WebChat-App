@@ -3,20 +3,20 @@ import React from 'react';
 
 
 export default class Choose extends React.Component {
-  componentDidMount() {
-    fetch('/login/homeRedirect', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include'
-    }).then(res => {
-      if (res.status === 401) {
-        window.location = '/'
-      }
-    })
-  }
+  // componentDidMount() {
+  //   fetch('/login/homeRedirect', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     credentials: 'include'
+  //   }).then(res => {
+  //     if (res.status === 401) {
+  //       window.location = '/'
+  //     }
+  //   })
+  // }
 
   render() {
     return(

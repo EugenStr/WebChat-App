@@ -20,28 +20,28 @@ class Login extends React.Component {
 
 	handleLogin() {
 		this.setState({errorMessage: null})
-		fetch('/login', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Credentials': true,
-				'Access-Control-Allow-Origin': true
-			},
-			credentials: 'include',
-			body: JSON.stringify({email: this.state.email, password: this.state.password})
-	}).then(res => {
-		if (res.status === 200) {
-			window.location = '/'
-		}
-		else {
-			return 	res.json()
-		}
-	}).then(res => {
-		if (res !== undefined) {
-			this.setState({errorMessage: res.message})
-		}
-	})
+	// 	fetch('/login', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Accept': 'application/json',
+	// 			'Content-Type': 'application/json',
+	// 			'Access-Control-Allow-Credentials': true,
+	// 			'Access-Control-Allow-Origin': true
+	// 		},
+	// 		credentials: 'include',
+	// 		body: JSON.stringify({email: this.state.email, password: this.state.password})
+	// }).then(res => {
+	// 	if (res.status === 200) {
+	// 		window.location = '/'
+	// 	}
+	// 	else {
+	// 		return 	res.json()
+	// 	}
+	// }).then(res => {
+	// 	if (res !== undefined) {
+	// 		this.setState({errorMessage: res.message})
+	// 	}
+	// })
 }
 
 	componentDidMount() {
