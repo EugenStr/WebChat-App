@@ -51,7 +51,7 @@ app.use(session({
       secure: IN_PROD
   },
   store: new MongoStore({
-    url:  MONGO_URL,
+    url:  process.env.MONGO_URL,
     ttl: 60 * 60 * 24 * 100
   }),
 
