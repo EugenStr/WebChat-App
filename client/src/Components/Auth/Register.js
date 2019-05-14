@@ -28,18 +28,18 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-		// fetch('/login/homeRedirect', {
-		// 	method: 'GET',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json'
-		// 	},
-    //   credentials: 'include'
-		// }).then(res => {
-		// 	if (res.status === 401) {
-		// 		window.location = '/'
-		// 	}
-		// })
+		fetch('/login/homeRedirect', {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+      credentials: 'include'
+		}).then(res => {
+			if (res.status === 401) {
+				window.location = '/'
+			}
+		})
 	}
 
   regExp(reg, value) {

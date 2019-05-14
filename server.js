@@ -42,8 +42,7 @@ app.use(session({
       secure: false
   },
   store: new MongoStore({
-    url: mongoURI,
-    ttl: 60 * 60 * 24 * 100
+    mongooseConnection: mongoose.connection
   }),
 
 
