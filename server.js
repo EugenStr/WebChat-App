@@ -28,7 +28,7 @@ const registerRoutes = require('./api/routes/Register')
 const loginRoutes = require('./api/routes/Login')
 const homeRoutes = require('./api/routes/home')
 
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true})
+mongoose.connect(MONGO_URL, {useNewUrlParser: true})
 
 
 app.use(cors({
@@ -51,7 +51,7 @@ app.use(session({
       secure: IN_PROD
   },
   store: new MongoStore({
-    url:  process.env.MONGO_URL,
+    url:  MONGO_URL,
     ttl: 60 * 60 * 24 * 100
   }),
 
