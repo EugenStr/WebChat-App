@@ -4,7 +4,7 @@ import React from 'react';
 
 export default class Choose extends React.Component {
   componentDidMount() {
-    fetch('http://localhost:5000/login/homeRedirect', {
+    fetch('/login/homeRedirect', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

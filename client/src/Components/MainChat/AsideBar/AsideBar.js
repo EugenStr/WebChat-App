@@ -11,7 +11,7 @@ class AsideBar extends React.Component {
     }
   }
   componentWillMount() {
-    fetch('http://localhost:5000/home/aside', {
+    fetch('/home/aside', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',

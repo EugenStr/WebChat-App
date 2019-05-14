@@ -32,7 +32,7 @@ class Chat extends React.Component {
       avatar: this.props.avatar,
       date
     })
-    fetch('http://localhost:5000/home/chat', {
+    fetch('/home/chat', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -13,7 +13,7 @@ class MessagesList extends React.Component {
 	messagesEnd = React.createRef()
 
 	componentDidMount() {
-		fetch('http://localhost:5000/home/chat', {
+		fetch('/home/chat', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',

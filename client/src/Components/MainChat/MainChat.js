@@ -16,7 +16,7 @@ class MainChat extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/login', {
+    fetch('/login', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',

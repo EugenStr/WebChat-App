@@ -20,7 +20,7 @@ class Login extends React.Component {
 
 	handleLogin() {
 		this.setState({errorMessage: null})
-		fetch('http://localhost:5000/login', {
+		fetch('/login', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -45,7 +45,7 @@ class Login extends React.Component {
 }
 
 	componentDidMount() {
-		fetch('http://localhost:5000/login/homeRedirect', {
+		fetch('/login/homeRedirect', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',

@@ -28,7 +28,7 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-		fetch('http://localhost:5000/login/homeRedirect', {
+		fetch('/login/homeRedirect', {
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',
@@ -114,7 +114,7 @@ class Register extends React.Component {
          email: this.state.email
        }
 
-       fetch('http://localhost:5000/register', {
+       fetch('/register', {
          method: 'POST',
          headers: {
            'Accept': 'application/json',

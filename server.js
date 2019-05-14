@@ -15,13 +15,11 @@ const registerRoutes = require('./api/routes/Register')
 const loginRoutes = require('./api/routes/Login')
 const homeRoutes = require('./api/routes/home')
 
-const PORT = process.env.PORT || 5000
-const NODE_ENV = process.env.NODE_ENV || 'development'
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
+const port = process.env.PORT || 5000
+const mongo_url = process.env.MONGO_URL || 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
 
-console.log(MONGO_URL)
 
-mongoose.connect(MONGO_URL, {useNewUrlParser: true})
+mongoose.connect(mongo_url, {useNewUrlParser: true})
 
 
 app.use(cors({
@@ -29,8 +27,6 @@ app.use(cors({
   credentials: true,
 }))
 
-
-const MONGO = MONGO_URL
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -47,7 +43,7 @@ app.use(session({
       secure: false
   },
   store: new MongoStore({
-    url: MONGO_URL,
+    url: mongo_url,
     ttl: 60 * 60 * 24 * 100
   }),
 
@@ -78,7 +74,7 @@ app.use((error, req, res, next) => {
 })
 
 
-const server = app.listen(PORT, () => `Server running on port ${PORT}`);
+const server = app.listen(port, () => `Server running on port ${port}`);
 
 //Websocket
 const io = socket(server)
