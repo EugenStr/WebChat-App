@@ -18,7 +18,8 @@ const {
 
   SESS_NAME = 'sid',
   SESS_SECRET = 'xanorp',
-  MONGO_URL = 'mongodb://localhost:27017/test'
+  MONGO_URL = 'mongodb://rbk232:123321sz@webchat-app-shard-00-00-zn2yk.mongodb.net:27017,webchat-app-shard-00-01-zn2yk.mongodb.net:27017,webchat-app-shard-00-02-zn2yk.mongodb.net:27017/test?ssl=true&replicaSet=webchat-app-shard-0&authSource=admin&retryWrites=true'
+
 } = process.env
 
 const IN_PROD = NODE_ENV === 'production';
