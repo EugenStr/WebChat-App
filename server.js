@@ -28,7 +28,7 @@ const registerRoutes = require('./api/routes/Register')
 const loginRoutes = require('./api/routes/Login')
 const homeRoutes = require('./api/routes/home')
 
-mongoose.connect(MONGO_URL, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true})
 
 
 app.use(cors({
