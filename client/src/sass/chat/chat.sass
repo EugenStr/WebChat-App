@@ -1,0 +1,105 @@
+
+.chat-wrapper
+  background: white
+  grid-area: chat
+  z-index: 1
+  display: grid
+  grid-template-columns: auto
+  grid-template-rows: 465px 90px
+  grid-template-areas: "messages" "input"
+
+
+.messages-wrapper
+
+  grid-area: messages
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+
+.messages-list
+  width: 100%
+  overflow: scroll
+
+.chat-input-wrapper
+  background: rgba(0,0,0,.1)
+  display: flex
+  align-items: flex-end
+  max-height: 122px
+  min-height: 70px
+  position: relative
+  grid-area: input
+
+
+.chat-input--text
+  width: 82%
+  background: white
+  color: black
+  font-size: 13px
+  resize: none
+  overflow-y: auto
+  font-family: 'Roboto', sans-serif
+  height: 60px
+  overflow-x: hidden
+  +border-radius(6px)
+  box-sizing: border-box
+  border: 1px solid rgba(0,0,0,.4)
+  margin: 15px 0 15px 40px
+  padding: 10px
+
+.chat-input--text:focus
+  outline: none
+
+.chat-input--text:active .chat-input__placeholder
+  display: none
+
+.send-message-btn
+  width: 70px
+  border: none
+  background: #fea319
+  +border-radius(100px)
+  margin-left: 20px
+  margin-bottom: 25px
+  height: 40px
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,.3)
+
+.send-message-btn:active
+  box-shadow: inset 1px 1px 5px 2px rgba(0,0,0,.1)
+
+.send-message__img
+  width: 20px
+
+.message
+  padding-top: 3px
+  padding-bottom: 3px
+  +display-flex
+  align-items: flex-start
+  color: $black-blue
+  padding-left: 60px
+  font-size: 13px
+  margin-top: 10px
+
+.red
+  border: 1px solid rgb(249, 61, 72)
+  background: rgb(246, 175, 175)
+
+.message:hover
+  background: rgb(244, 235, 235)
+
+.message-avatar
+  margin-right: 20px
+
+.time
+  font-size: 12px
+  color: grey
+  margin-left: 0px
+  line-height: 1em
+
+
+.sender-name
+  font-size: 14px
+  font-weight: 500
+  margin-bottom: -7px
+
+.sender-message
+  line-height: 1.5em
+  width: 600px

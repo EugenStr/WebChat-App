@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+body {
+    font-size: 18px;
+    line-height: 27px;
+    font-family: 'Roboto', sans-serif;
+    color: #232f34;
+    font-style: normal;
+    transition: top 1s ease-out 0.5s;
+    margin: 0;
+    background: rgba(95, 158, 160, 0.1);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button:active,
+button:focus {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:active, :link, :visited {
+	color: black;
+}
+
+input:active,
+input:focus {
+    outline: none;
+}
