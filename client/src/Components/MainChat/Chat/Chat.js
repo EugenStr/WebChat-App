@@ -2,7 +2,7 @@ import React from 'react';
 import ChatInput from './ChatInput';
 import MessagesList from './MessagesList';
 import openSocket from 'socket.io-client';
-const socket = openSocket('/');
+const socket = openSocket('http://localhost:5000/');
 
 class Chat extends React.Component {
   constructor(props) {

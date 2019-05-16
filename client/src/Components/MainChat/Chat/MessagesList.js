@@ -41,7 +41,7 @@ class MessagesList extends React.Component {
   }
 
 	scrollToBottom = () => {
-  	this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' })
+  	this.messagesEnd.current.scrollIntoView()
   }
 
 	render() {

@@ -299,18 +299,44 @@
   margin-right: 11px;
   padding-left: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000344}}
+.profile-popup {
+  background: #d6d6d6;
+  position: absolute;
+  top: 250%;
+  width: 540px;
+  left: 33%;
+  z-index: 44;
+  font-size: 15px;
+  color: #232f34;
+  font-weight: 500;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #232f34; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000358}}
 .profile-popup p {
-  text-align: center;
+  margin-left: 40px;
+  margin-top: 10px;
   padding-bottom: 20px;
-  font-size: 26px;
+  font-size: 24px;
   color: #232f34; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000354}}
-.profile-popup label {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000369}}
+.label-name {
+  margin-left: 46px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000372}}
+.label-surname {
   margin-left: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000359}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000375}}
+.label-avatar {
+  margin-left: 26px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000379}}
 .profile-popup__input {
   padding-left: 10px;
   font-size: 15px;
@@ -321,17 +347,18 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin-bottom: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000369}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000390}}
 .profile-popup__avatar {
-  margin-top: 10px;
-  width: 430px; }
+  width: 260px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000374}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000394}}
 .submit-changes {
-  margin-top: 15px;
-  margin-left: 300px;
+  margin-left: 50px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   background: #f9aa33;
   border: none;
   color: #232f34;
@@ -344,21 +371,30 @@
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003107}}
+.popup-user {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 2px solid #232f34;
+  top: 50px;
+  right: 28px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003116}}
 .close {
   position: absolute;
   right: 25px;
-  top: 15px;
+  top: 10px;
   width: 32px;
   height: 32px;
   opacity: 0.3;
   cursor: pointer; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\0000397}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003126}}
 .close:hover {
   opacity: 1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003101}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003130}}
 .close:before, .close:after {
   position: absolute;
   left: 15px;
@@ -367,15 +403,15 @@
   width: 2px;
   background-color: #333; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003110}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003139}}
 .close:before {
   transform: rotate(45deg); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003114}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003143}}
 .close:after {
   transform: rotate(-45deg); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003147}}
 .profile-menu {
   width: 184px;
   background: white;
@@ -393,33 +429,15 @@
   font-weight: 500;
   border: 1px solid #232f34; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003133}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003162}}
 .profile-menu__item {
   text-align: center;
   cursor: pointer;
   border-bottom: 1px solid #f2f2f2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003139}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003168}}
 .profile-menu__item:last-child {
   border-bottom: none; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/header\.sass}line{font-family:\00003145}}
-.profile-popup {
-  background: #d6d6d6;
-  position: absolute;
-  top: 250%;
-  width: 540px;
-  left: 33%;
-  z-index: 44;
-  padding: 40px;
-  font-size: 15px;
-  color: #232f34;
-  font-weight: 500;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  border-radius: 25px;
-  border: 2px solid #232f34; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/aside\.sass}line{font-family:\000031}}
 .aside-bar {
@@ -428,7 +446,7 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/aside\.sass}line{font-family:\000034}}
 .aside-bar {
   background: white;
-  height: 555px;
+  min-height: 555px;
   border-right: 1px solid #4a6572; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/aside\.sass}line{font-family:\0000310}}
@@ -441,7 +459,7 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/aside\.sass}line{font-family:\0000317}}
 .users-list {
   width: 84%;
-  height: 490px;
+  height: 88.2882882883%;
   margin: 0 auto;
   margin-top: 10px;
   -webkit-border-radius: 3px;
@@ -496,7 +514,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 465px 90px;
+  grid-template-rows: auto 16.2162162162%;
   grid-template-areas: "messages" "input"; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/chat\/chat\.sass}line{font-family:\0000312}}
@@ -622,13 +640,15 @@
 .app-wrapper {
   margin: 0 auto;
   width: 1100px;
-  height: 100vh; }
+  height: 100%; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/eugen\/Desktop\/chat\/client\/src\/sass\/style\.sass}line{font-family:\0000315}}
 .mainchat-wrapper {
+  height: 100vh;
   display: grid;
   grid-template-columns: 250px auto;
   grid-template-rows: 70px auto;
-  grid-template-areas: "header header" "aside chat"; }
+  grid-template-areas: "header header" "aside chat";
+  max-height: 836px; }
 
 /*# sourceMappingURL=style.css.map */

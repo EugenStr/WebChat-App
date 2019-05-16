@@ -4,9 +4,13 @@ class UserPopup extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        name: '',
-        surname: '',
-        avatar: ''
+        name: this.props.name,
+        surname: this.props.surname,
+        avatar: '',
+        setAvatar: this.props.avatar,
+        nameIsValid: true,
+        surnameIsValid: true,
+        avatarIsValid: true
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,25 +25,39 @@ class UserPopup extends React.Component {
   }
 
   handleSubmit() {
-    let name, surname, avatar;
-      if (this.state.name.length > 0) {
+    let name, surname, avatar, result = true;
+    let regExp = /http:\/\/.+?\.jpg|jpeg/gi
+      if (this.state.name.length > 3) {
           name = this.state.name
       }
       else {
-        name = this.props.name
+        this.setState({
+          nameIsValid: false
+        })
+        result *= false;
       }
-      if (this.state.surname.length > 0) {
+      if (this.state.surname.length > 3) {
         surname = this.state.surname
       }
       else {
-        surname = this.props.surname
+        this.setState({
+          surnameIsValid: false
+        })
+        result *= false;
       }
-      if (this.state.avatar.length > 10) {
+      if (regExp.test(this.state.avatar)) {
         avatar = this.state.avatar
       }
       else {
-        avatar = this.props.avatar
+        this.setState({
+          avatarIsValid: false
+        })
+        result *= false;
       }
+    if (!result) {
+      return
+    }
+
     fetch('/home/profile', {
       headers: {
         'Accept': 'application/json',
@@ -55,6 +73,13 @@ class UserPopup extends React.Component {
       })
     }).then(res => {
       if (res.ok) {
+      return res.json()
+      }
+    }).then(res => {
+      if (res !== undefined) {
+        this.setState({
+          setAvatar: res.avatar
+        })
         window.location = '/'
       }
     })
@@ -65,10 +90,11 @@ class UserPopup extends React.Component {
       <div className="profile-popup">
         <span className="close" onClick={this.props.click}></span>
         <p>Редактировать профиль</p>
-        <label>Имя<input placeholder="Введите имя" type="text" name="name" value={this.state.name} className="profile-popup__input" onChange={this.handleChange}/></label>
-        <label>Фамилия<input placeholder="Введите фамилию" type="text" name="surname" value={this.state.surname} className="profile-popup__input" onChange={this.handleChange}/></label>
-        <label>Аватар<input placeholder="URL изображения" type="url" name="avatar" value={this.state.avatar} className="profile-popup__input profile-popup__avatar" onChange={this.handleChange}/></label>
+        <label className="label-name">Имя<input placeholder="Введите имя" type="text" name="name" value={this.state.name} className={this.state.nameIsValid ? "profile-popup__input" : "profile-popup__input red"} onChange={this.handleChange}/></label><br />
+        <label className="label-surname">Фамилия<input placeholder="Введите фамилию" type="text" name="surname" value={this.state.surname} className={this.state.surnameIsValid ? "profile-popup__input" : "profile-popup__input red"} onChange={this.handleChange}/></label><br />
+        <label className="label-avatar">Аватар<input placeholder="URL изображения" type="url" name="avatar" value={this.state.avatar} className={this.state.avatarIsValid ? "profile-popup__input profile-popup__avatar" : "profile-popup__input profile-popup__avatar red"} onChange={this.handleChange}/></label><br />
         <button className="submit-changes" onClick={this.handleSubmit}>Сохранить изменения!</button>
+        <img className="popup-user" alt="user-avatar" src={this.state.setAvatar} />
       </div>
     )
   }
