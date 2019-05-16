@@ -1,5 +1,5 @@
 ### WebChat-App
-# Technology stack: ReactJs, NodeJs, SASS
+# Technology: ReactJs, NodeJs, SASS
 
 How to open:
 1. Clone git repository.
