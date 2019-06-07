@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './reset.css';
-import './scaff.css';
-import './style.css';
-import App from './Components/App.js'
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
+import './styles/reset.css';
+import './styles/scaff.css';
+import App from './Components/App/App'
+import { BrowserRouter as Router} from 'react-router-dom'
+import ChatService from './services/ChatService'
+import store from './store'
+import {ChatServiceProvider} from './Components/ChatServiceContext/ChatServiceContext'
 
-
-
+const requests = new ChatService();
 
 ReactDOM.render((
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>
-	), document.getElementById('root'));
+  <Provider store={store}>
+    <ChatServiceProvider value={requests}>
+      <Router>
+        <App />
+      </Router>
+    </ChatServiceProvider>
+  </Provider>
+
+), document.getElementById('root'));

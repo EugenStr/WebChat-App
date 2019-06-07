@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from '../../img/Android_O_Preview_Logo.png'
+import './AuthHeader.sass'
 
-
-const HeaderAuth = () => {
+const AuthHeader = () => {
 	return (
 		<div className="header-auth">
 			<img className="header-auth__logo" src={logo} alt="logo" />
@@ -11,4 +11,4 @@ const HeaderAuth = () => {
 	)
 }
 
-export default HeaderAuth
+export default AuthHeader

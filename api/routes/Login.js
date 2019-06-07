@@ -29,24 +29,23 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res, next) => {
+
   User.find({email: req.body.email})
       .exec()
       .then(docs => {
         if (docs.length > 0) {
           const user = docs[0];
+
           const checked = hasher.CheckPassword(req.body.password, user.password);
           if (checked) {
+
               req.session.userID = user._id
               res.status(200).end()
           } else {
-            res.status(403).json({
-              message: "Error: Неверный пароль"
-            })
+            res.status(402).end()
           }
         } else {
-          res.status(404).json({
-            message: 'Error: Логин не найден'
-          })
+          res.status(401).end()
         }
      })
 })

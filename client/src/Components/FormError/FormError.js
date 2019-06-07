@@ -1,8 +1,9 @@
 import React from 'react';
+import './FormError.sass'
 
 const FormError = (props) => {
   return (
-    <div className='formErrors'>
+    <div className='form-errors'>
       {Object.keys(props.formErrors).map((fieldName, i) => {
         if(props.formErrors[fieldName].length > 0){
           return (

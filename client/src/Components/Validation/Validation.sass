@@ -1,0 +1,26 @@
+@import '../../styles/var-mixins'
+
+.valid-error
+  position: absolute
+  left: 245px
+  top: 8px
+  color: white
+  height: 30px
+  line-height: 1.5em
+  padding-left: 10px
+  text-align: left
+  background: #f21b1b
+  font-size: 10px
+  width: 350px
+  +border-radius(10px)
+
+
+.valid-error:before
+  content: ' '
+  position: absolute
+  width: 0
+  height: 0
+  left: -10px
+  top: 10px
+  border: 8px solid
+  border-color: #f21b1b #f21b1b transparent transparent

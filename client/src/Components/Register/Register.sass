@@ -1,0 +1,58 @@
+@import '../../styles/var-mixins'
+
+.register
+  position: relative
+  text-align: center
+  margin: 0 auto
+  margin-top: 50px
+  padding: 15px 35px
+  +border-radius(10px)
+  box-shadow: 10px 4px 10px 3px rgba(0, 0, 0, .4)
+  font-weight: 500
+  background: white
+
+.register-form
+  display: flex
+  -webkit-flex-direction: column
+  -ms-flex-direction: column
+  flex-direction: column
+
+.register-input-span
+  position: relative
+  overflow: visible
+  img
+    width: 18px
+    top: 13px
+    position: absolute
+    left: 12px
+    padding-right: 5px
+    border-right: 1px solid rgba(0, 0, 0, .4)
+
+.register-auth-input
+  width: 180px
+  border: 1px solid rgba(0, 0, 0, .4)
+  border-bottom: none
+  height: 40px
+  padding-left: 50px
+  font-size: 15px
+
+.register-submit
+  +border-radius(25px)
+  padding: 10px 35px
+  border: none
+  margin: 0 auto
+  color: #17262a
+  background: #faab1a
+  font-size: 15px
+  font-weight: 600
+  margin-top: 15px
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .2)
+  margin-bottom: 10px
+
+.register-auth-input_first
+  border-radius: 15px 15px 0 0px
+
+.register-auth-input__last
+  border-bottom: 1px solid rgba(0, 0, 0, .4)
+  -webkit-border-radius: 0 0 15px 15px
+  border-radius: 0 0 15px 15px

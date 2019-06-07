@@ -1,0 +1,80 @@
+@import '../../styles/var-mixins'
+
+.login
+  position: relative
+  text-align: center
+  margin: 0 auto
+  margin-top: 50px
+  padding: 15px 35px
+  +border-radius(10px)
+  box-shadow: 10px 4px 10px 3px rgba(0, 0, 0, .4)
+  font-weight: 500
+  background: white
+
+.login-title
+  font-size: 20px
+  font-weight: 500
+  color: #17262a
+  margin-bottom: 10px
+
+.login-form
+  display: flex
+  -webkit-flex-direction: column
+  -ms-flex-direction: column
+  flex-direction: column
+
+
+.login-input-span
+  position: relative
+  overflow: visible
+  img
+    width: 18px
+    top: 13px
+    position: absolute
+    left: 32px
+    padding-right: 5px
+    border-right: 1px solid rgba(0, 0, 0, .4)
+
+.login-input
+  width: 180px
+  border: 1px solid rgba(0, 0, 0, .4)
+  border-bottom: none
+  height: 40px
+  padding-left: 50px
+  font-size: 15px
+
+.login-input__first
+  border-radius: 15px 15px 0 0px
+
+.login-input__last
+  border-bottom: 1px solid rgba(0, 0, 0, .4)
+  -webkit-border-radius: 0 0 15px 15px
+  border-radius: 0 0 15px 15px
+
+
+.auth-submit__login
+  +border-radius(25px)
+  padding: 10px 35px
+  border: none
+  margin: 0 auto
+  color: #17262a
+  background: #faab1a
+  font-size: 15px
+  font-weight: 600
+  margin-top: 15px
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .2)
+  margin-bottom: 10px
+
+.change-auth
+  color: $black-blue
+  font-size: 14px
+  display: inline
+
+
+.login-link
+  font-size: 15px
+  margin-left: 10px
+  text-decoration: underline
+  color: #0000FF
+  cursor: pointer
+  display: inline
