@@ -1,0 +1,99 @@
+@keyframes lds-wedges {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-wedges {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.lds-wedges {
+  margin: 0 auto;
+  margin-top: 90px;
+  position: relative;
+}
+.lds-wedges > div > div {
+  -webkit-transform-origin: 100px 100px;
+  transform-origin: 100px 100px;
+  -webkit-animation: lds-wedges 3.6s linear infinite;
+  animation: lds-wedges 3.6s linear infinite;
+  opacity: 0.8;
+}
+.lds-wedges > div > div > div {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  width: 70px;
+  height: 70px;
+  border-radius: 70px 0 0 0;
+  -webkit-transform-origin: 100px 100px;
+  transform-origin: 100px 100px;
+}
+.lds-wedges > div div:nth-child(1) > div {
+  background: #bd4030;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.lds-wedges > div div:nth-child(1) {
+  -webkit-animation-duration: 0.9s;
+  animation-duration: 0.9s;
+}
+.lds-wedges > div div:nth-child(2) > div {
+  background: #e0b83e;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.lds-wedges > div div:nth-child(2) {
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+}
+.lds-wedges > div div:nth-child(3) > div {
+  background: #7f9626;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.lds-wedges > div div:nth-child(3) {
+  -webkit-animation-duration: 1.8s;
+  animation-duration: 1.8s;
+}
+.lds-wedges > div div:nth-child(4) > div {
+  background: #76be9f;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.lds-wedges > div div:nth-child(4) {
+  -webkit-animation-duration: 3.6s;
+  animation-duration: 3.6s;
+}
+.lds-wedges {
+  width: 154px !important;
+  height: 154px !important;
+  -webkit-transform: translate(-77px, -77px) scale(0.77) translate(77px, 77px);
+  transform: translate(-77px, -77px) scale(0.77) translate(77px, 77px);
+}
+
+.shape {
+
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+
+}

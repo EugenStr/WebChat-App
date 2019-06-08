@@ -1,6 +1,10 @@
 const initialState = {
   isLogged: null,
-  loginError: null
+  loading: false,
+  loginError: null,
+  registerValid: [],
+  isRegistered: null,
+  emailIsBusy: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,19 +28,50 @@ const reducer = (state = initialState, action) => {
     case 'SEND_LOGIN_POST' :
       return {
         ...state,
-        loginError: false
+        loginError: false,
+        loading: true
       }
     case 'SUCCESS_LOGIN_POST' :
       return {
+        ...state,
         isLogged: true,
-        loginError: false
+        loginError: false,
+        loading: false
       }
     case 'FAILURE_LOGIN_POST' :
       return {
         ...state,
-        loginError: true
+        loginError: true,
+        loading: false
       }
 
+    case 'CHECK_VALID' :
+      return {
+        ...state,
+        registerValid: action.payload
+      }
+
+
+    case 'FETCH_REGISTER_FAILURE' :
+      return {
+        ...state,
+        emailIsBusy: true,
+        loading: false
+      }
+
+    case 'FETCH_REGISTER_REQUEST' :
+      return {
+        ...state,
+        loading: true
+      }
+
+    case 'FETCH_REGISTER_SUCCESS' :
+      return {
+        ...state,
+        emailIsBusy: false,
+        isRegistered: true,
+        loading: false
+      }
 
     default:
       return state

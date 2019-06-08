@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator')
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan')
@@ -29,6 +30,7 @@ app.use(cors({
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 app.use(cookieParser());
 app.use(session({
@@ -76,7 +78,7 @@ const server = app.listen(port, () => console.log(`Server running on port ${port
 
 //Websocket
 const io = socket(server)
-  
+
 io.on('connection', socket => {
   console.log('io connection', socket.id)
   socket.on('chat', data => {

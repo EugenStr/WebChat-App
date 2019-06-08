@@ -1,129 +1,36 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Register from './Register'
+import formValid from '../../validation'
+import withChatService from '../hoc/withChatService'
+import { connect } from 'react-redux'
+import { checkRegisterValid, fetchAuth, handleRegister} from '../../actions'
+import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import Spinner from '../Spinner/Spinner'
 
-
-export default class RegisterContainer extends React.Component {
-
+class RegisterContainer extends React.Component {
     state = {
       name: '',
       surname: '',
-      login: '',
       password: '',
       confirmPass: '',
-      email: '',
-      nameValid: null,
-      surnameValid: null,
-      passwordValid: null,
-      emailValid: null,
-      confirmPassValid: null,
-      emailIsBusy: null
+      email: ''
 }
 
   componentDidMount() {
-		fetch('/login/homeRedirect', {
-			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-      credentials: 'include'
-		}).then(res => {
-			if (res.status === 401) {
-				window.location = '/' //TODO
-			}
-		})
+    this.props.fetchAuth()
 	}
 
-  regExp(reg, value) {
-    return reg.test(value)
-  }
-
-  nameValidation() {
-    if ( this.state.name.length < 3 || !this.regExp(/^[A-zА-яЁё]+$/, this.state.name)) {
-      this.setState({nameValid: false})
-      return false;
-    }
-    else {
-      this.setState({nameValid: true})
-      return true;
-    }
-  }
-  surnameValidation() {
-    if (this.state.surname.length < 3 || !this.regExp(/^[A-zА-яЁё]+$/, this.state.surname)) {
-      this.setState({surnameValid: false})
-      return false;
-    }
-    else {
-      this.setState({surnameValid: true})
-      return true;
-    }
-  }
-  confirmPassValidation() {
-    if (this.state.password !== this.state.confirmPass) {
-      this.setState({confirmPassValid: false})
-      return false;
-    }
-    else {
-      this.setState({confirmPassValid: true})
-      return true;
-    }
-  }
-  passwordValidation() {
-    if (this.state.password.length < 6 || !this.regExp(/(?=.*[0-9])[0-9a-zA-Z!@#$%^&*]{6,}/g, this.state.password)) {
-      this.setState({passwordValid: false})
-      return false;
-    }
-    else {
-      this.setState({passwordValid: true})
-      return true;
-    }
-  }
-  emailValidation() {
-    if (!this.regExp(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/g, this.state.email)) {
-      this.setState({emailValid: false})
-      return false;
-    }
-    else {
-      this.setState({emailValid: true})
-      return true;
-    }
-  }
 
   handleSubmit = (e) => {
-    e.preventDefault();
-     this.nameValidation()
-     this.surnameValidation()
-     this.passwordValidation()
-     this.emailValidation();
-     this.confirmPassValidation()
-
-     if (this.nameValidation() && this.surnameValidation() && this.passwordValidation() && this.emailValidation() && this.confirmPassValidation()) {
-       const user = {
-         name: this.state.name,
-         surname: this.state.surname,
-         login: this.state.login,
-         password: this.state.password,
-         email: this.state.email
-       }
-
-       fetch('/register', {
-         method: 'POST',
-         headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({user})
-       }).then(res => {
-         if (res.status === 409) {
-           this.setState({emailIsBusy: true})
-         } else {
-           window.location = '/'; //TODO
-         }
-       })
-
-
-     }
+    const {handleRegister, checkRegisterValid} = this.props
+    e.preventDefault()
+    const valid = formValid(this.state)
+    checkRegisterValid(valid)
+    if (valid.every(el => el === 1)) {
+      handleRegister(this.state)
     }
+  }
 
 
   handleUserInput = (e) => {
@@ -133,9 +40,46 @@ export default class RegisterContainer extends React.Component {
       [name]: value
     })
   }
+
   render() {
+    const { isLogged, isRegistered, emailIsBusy, loading} = this.props
+    if (isLogged) {
+      return <Redirect to="/" />
+    }
+    if (isRegistered) {
+      return <Redirect to='/login' />
+    }
     return (
-      <Register {...this.state} handleChange={this.handleUserInput} handleSubmit={this.handleSubmit}/>
+      <Fragment>
+        <Register {...this.state} handleChange={this.handleUserInput} handleSubmit={this.handleSubmit} registerValid={this.props.registerValid} emailIsBusy={emailIsBusy} />
+        {loading ? <Spinner /> : false }
+      </Fragment>
+
     )
   }
 }
+
+const mapStateToProps = ({isLogged, registerValid, isRegistered, emailIsBusy, loading}) => {
+  return { isLogged, registerValid, emailIsBusy, isRegistered, loading}
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { chatService } = ownProps
+  return {
+    fetchAuth: fetchAuth(chatService, dispatch),
+    checkRegisterValid: (obj) => dispatch(checkRegisterValid(obj)),
+    handleRegister: (data) => handleRegister(chatService, dispatch)(data)
+  }
+}
+
+RegisterContainer.propTypes = {
+  chatService: PropTypes.object,
+  checkRegisterValid: PropTypes.func,
+  emailIsBusy: PropTypes.bool,
+  fetchAuth: PropTypes.func,
+  handleRegister: PropTypes.func,
+  isLogged: PropTypes.bool,
+  registerValid: PropTypes.array
+}
+
+export default withChatService()(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer))

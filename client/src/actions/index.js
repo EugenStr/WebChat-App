@@ -29,7 +29,7 @@ const sendLogin = () => {
   }
 }
 
-const succesLogin = () => {
+const successLogin = () => {
   return {
     type: 'SUCCESS_LOGIN_POST'
   }
@@ -44,12 +44,51 @@ const notLoggedIn = () => {
 const handleLogin = (chatService, dispatch) => (data) => {
   dispatch(sendLogin())
   chatService.loginPost(data)
-             .then(() => dispatch(succesLogin()))
+             .then(() => dispatch(successLogin()))
              .catch(() => dispatch(notLoggedIn()))
 }
 
 
+const checkRegisterValid = (obj) => {
+  return {
+    type: 'CHECK_VALID',
+    payload: obj
+  }
+}
+
+const successRegister = () => {
+    return {
+      type: 'FETCH_REGISTER_SUCCESS'
+    }
+}
+
+const failureRegister = () => {
+    return {
+      type: 'FETCH_REGISTER_FAILURE'
+    }
+}
+
+const requestRegister = () => {
+    return {
+      type: 'FETCH_REGISTER_REQUEST'
+    }
+}
+
+
+const handleRegister = (chatService, dispatch) => (data) => {
+  dispatch(requestRegister())
+  chatService.register(data)
+             .then(() => {
+               alert('Спасибо за регистрацию, можете войти')
+               dispatch(successRegister())
+
+             })
+             .catch(() => dispatch(failureRegister()))
+
+}
 export {
   fetchAuth,
-  handleLogin
+  handleLogin,
+  checkRegisterValid,
+  handleRegister
 }

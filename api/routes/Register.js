@@ -27,8 +27,8 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.post('/', (req, res, next) => {
-  User.find({email: req.body.user.email})
+router.post('/', (req, res) => {
+  User.find({email: req.body.email})
       .exec()
       .then(result => {
         if (result.length > 0) {
@@ -37,13 +37,14 @@ router.post('/', (req, res, next) => {
           })
         }
         else {
-          const hashPassword = hasher.HashPassword(req.body.user.password);
+
+          const hashPassword = hasher.HashPassword(req.body.password);
           const user = new User({
             _id: new mongoose.Types.ObjectId(),
-            name: req.body.user.name,
-            surname: req.body.user.surname,
+            name: req.body.name,
+            surname: req.body.surname,
             password: hashPassword,
-            email: req.body.user.email,
+            email: req.body.email,
             avatar: 'https://dubravaorel.ru/wp-content/uploads/2018/09/no-translate-detected_318-35708.jpg'
           });
 

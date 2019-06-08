@@ -13,4 +13,10 @@ export default class ChatService {
 
     return res
   }
+
+  async register(data) {
+    const res = await axios.post('/register', data)
+
+    return res
+  }
 }
