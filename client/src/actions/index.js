@@ -1,8 +1,4 @@
-const authRequest = () => {
-  return {
-    type: 'FETCH_AUTH_REQUEST'
-  }
-}
+
 
 const authSuccess = () => {
   return {
@@ -17,7 +13,6 @@ const authError= () => {
 }
 
 const fetchAuth = (chatService, dispatch) => () => {
-  dispatch(authRequest())
   chatService.homeRedirect()
     .then(() => dispatch(authError()))
     .catch(() => dispatch(authSuccess()))
@@ -75,20 +70,80 @@ const requestRegister = () => {
 }
 
 
-const handleRegister = (chatService, dispatch) => (data) => {
-  dispatch(requestRegister())
-  chatService.register(data)
-             .then(() => {
-               alert('Спасибо за регистрацию, можете войти')
-               dispatch(successRegister())
+const handleRegister = (formValid, chatService, dispatch) => (data) => {
+  const valid = formValid(data)
+  console.log(valid)
+  dispatch(checkRegisterValid(valid))
+  if (valid.every(el => el === 1)) {
+    dispatch(requestRegister())
+    chatService.register(data)
+               .then(() => {
+                 alert('Спасибо за регистрацию, можете войти')
+                 dispatch(successRegister())
 
-             })
-             .catch(() => dispatch(failureRegister()))
-
+               })
+               .catch(() => dispatch(failureRegister()))
+  }
 }
+
+const getUserRequest = () =>{
+  return {
+    type: 'FETCH_CURRENT_USER_REQUEST'
+  }
+}
+
+const getUserSuccess = (data) => {
+    return {
+      type: 'FETCH_CURRENT_USER_SUCCESS',
+      payload: data
+    }
+}
+
+const getUserError = () => {
+    return {
+      type: 'FETCH_CURRENT_USER_FAILURE'
+    }
+}
+
+
+const getCurrentUser = (chatService, dispatch) => () => {
+  dispatch(getUserRequest())
+  chatService.getCurrentUser()
+             .then((data) => dispatch(getUserSuccess(data.data[0])))
+             .catch(() => dispatch(getUserError()))
+}
+
+
+const logoutSuccess = () => {
+    return {
+      type: 'LOGOUT_SUCCESS'
+    }
+}
+
+const logoutError = () => {
+    return {
+      type: 'LOGOUT_ERROR'
+    }
+}
+
+const logOut = (chatService, dispatch) => () => {
+  chatService.logout()
+             .then((data) => dispatch(logoutSuccess()))
+             .catch((err) => alert(`Error: ${err}`))
+}
+
+
+const userPanelToogle = () => {
+  return {
+    type: 'USER_PANEL_TOOGLE'
+  }
+}
+
 export {
   fetchAuth,
   handleLogin,
-  checkRegisterValid,
-  handleRegister
+  handleRegister,
+  getCurrentUser,
+  logOut,
+  userPanelToogle
 }

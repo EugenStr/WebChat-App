@@ -41,8 +41,6 @@ router.post('/', (req, res, next) => {
 
               req.session.userID = user._id
               res.status(200).end()
-          } else {
-            res.status(402).end()
           }
         } else {
           res.status(401).end()

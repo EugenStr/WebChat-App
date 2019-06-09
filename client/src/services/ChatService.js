@@ -19,4 +19,16 @@ export default class ChatService {
 
     return res
   }
+
+  async getCurrentUser() {
+    const res = await axios.get('/login')
+
+    return res
+  }
+
+  async logout() {
+    const res = await axios.post('/login/logout')
+
+    return res
+  }
 }

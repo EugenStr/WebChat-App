@@ -6,8 +6,8 @@ const Choose = () => {
   return(
     <div className="choose-wrapper">
       <h1 className="auth-title">Добро пожаловать!</h1>
-      <Link to="/register" className="choose-buttons">Регистрация</Link>
-      <Link to="/login" className="choose-buttons">Войти</Link>
+      <Link to="/auth/register" className="choose-buttons">Регистрация</Link>
+      <Link to="/auth/login" className="choose-buttons">Войти</Link>
     </div>
   )
 }

@@ -13,11 +13,6 @@ class LoginContainer extends React.Component {
 		password: ''
 	}
 
-	logIn = () => {
-		const {email, password} = this.state
-		this.props.handleLogin({email, password})
-	}
-
 	componentDidMount() {
 		this.props.fetchAuth()
 	}
@@ -32,19 +27,19 @@ class LoginContainer extends React.Component {
 
 	render() {
 
-			const {loginError, isLogged, loading} = this.props;
+			const {loginError, isLogged, loading, handleLogin} = this.props;
+			const {email, password} = this.state
 
 			if (isLogged) {
 				return <Redirect to='/' />
 			}
-
       return (
 				<Fragment>
 				<Login handleChange={this.handleChangeInput}
                      loginError={loginError}
                      email={this.state.email}
                      password={this.state.password}
-                     logIn={this.logIn}
+                     handleLogin={() => handleLogin({email, password})}
               />
 						{loading ? <Spinner /> : false}
 			  </Fragment>

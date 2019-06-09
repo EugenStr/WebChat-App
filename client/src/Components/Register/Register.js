@@ -39,7 +39,7 @@ const Register = ({handleChange, handleSubmit, registerValid, emailIsBusy, ...re
         <button type="button" className="btn register-submit" onClick={handleSubmit}>Зарегистрироваться!</button>
       </form>
       <p className="change-auth">Уже есть аккаунт?</p>
-      <Link className="login-link" to="/login">Войти!</Link>
+      <Link className="login-link" to="/auth/login">Войти!</Link>
     </div>
   )
 }

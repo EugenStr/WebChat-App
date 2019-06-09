@@ -1,6 +1,7 @@
 import React from 'react';
+import './ProfilePopup.sass'
 
-class UserPopup extends React.Component {
+class ProfilePopup extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -14,6 +15,7 @@ class UserPopup extends React.Component {
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
+
   }
 
   handleChange(e) {
@@ -102,4 +104,4 @@ class UserPopup extends React.Component {
 }
 
 
-export default UserPopup
+export default ProfilePopup

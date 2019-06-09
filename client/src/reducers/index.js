@@ -4,16 +4,13 @@ const initialState = {
   loginError: null,
   registerValid: [],
   isRegistered: null,
-  emailIsBusy: null
+  emailIsBusy: null,
+  currentUser: {},
+  userPanelisOpen: false
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_AUTH_REQUEST' :
-      return {
-        ...state,
-        isLogged: false
-      }
     case 'FETCH_AUTH_SUCCESS' :
       return {
         ...state,
@@ -35,7 +32,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLogged: true,
-        loginError: false,
         loading: false
       }
     case 'FAILURE_LOGIN_POST' :
@@ -71,6 +67,42 @@ const reducer = (state = initialState, action) => {
         emailIsBusy: false,
         isRegistered: true,
         loading: false
+      }
+
+
+    case 'FETCH_CURRENT_USER_SUCCESS' :
+      return {
+        ...state,
+        isLogged: true,
+        loading: false,
+        currentUser: action.payload
+      }
+
+    case 'FETCH_CURRENT_USER_REQUEST' :
+      return {
+        ...state,
+        isLogged: true,
+        loading: true
+      }
+
+    case 'FETCH_CURRENT_USER_FAILURE' :
+      return {
+        ...state,
+        isLogged: false,
+        loading: false
+      }
+
+    case 'LOGOUT_SUCCESS' :
+      return {
+        ...state,
+        isLogged: false
+      }
+
+    case 'USER_PANEL_TOOGLE' :
+
+      return {
+        ...state,
+        userPanelisOpen: !state.userPanelisOpen
       }
 
     default:

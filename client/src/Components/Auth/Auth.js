@@ -11,10 +11,9 @@ const Auth = () => {
 				<div className="auth-wrapper">
 						<AuthHeader />
 						<Switch>
-							<Route path="/auth" component={ChooseContainer} />
-							<Route path="/login" component={LoginContainer} />
-							<Route path="/register" component={RegisterContainer} />
-							<Route render={() => <h1 className='not-found'><span>404</span> Page Not Found</h1>} />
+							<Route path="/auth" exact component={ChooseContainer} />
+							<Route path="/auth/login" component={LoginContainer} />
+							<Route path="/auth/register" component={RegisterContainer} />
 						</Switch>
 				</div>
 		)

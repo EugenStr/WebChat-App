@@ -3,7 +3,7 @@ import Register from './Register'
 import formValid from '../../validation'
 import withChatService from '../hoc/withChatService'
 import { connect } from 'react-redux'
-import { checkRegisterValid, fetchAuth, handleRegister} from '../../actions'
+import { fetchAuth, handleRegister } from '../../actions'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Spinner from '../Spinner/Spinner'
@@ -21,18 +21,6 @@ class RegisterContainer extends React.Component {
     this.props.fetchAuth()
 	}
 
-
-  handleSubmit = (e) => {
-    const {handleRegister, checkRegisterValid} = this.props
-    e.preventDefault()
-    const valid = formValid(this.state)
-    checkRegisterValid(valid)
-    if (valid.every(el => el === 1)) {
-      handleRegister(this.state)
-    }
-  }
-
-
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -42,16 +30,16 @@ class RegisterContainer extends React.Component {
   }
 
   render() {
-    const { isLogged, isRegistered, emailIsBusy, loading} = this.props
+    const { isLogged, isRegistered, emailIsBusy, loading, handleRegister} = this.props
     if (isLogged) {
       return <Redirect to="/" />
     }
     if (isRegistered) {
-      return <Redirect to='/login' />
+      return <Redirect to='/auth/login' />
     }
     return (
       <Fragment>
-        <Register {...this.state} handleChange={this.handleUserInput} handleSubmit={this.handleSubmit} registerValid={this.props.registerValid} emailIsBusy={emailIsBusy} />
+        <Register {...this.state} handleChange={this.handleUserInput} handleSubmit={() => handleRegister(this.state)} registerValid={this.props.registerValid} emailIsBusy={emailIsBusy} />
         {loading ? <Spinner /> : false }
       </Fragment>
 
@@ -67,8 +55,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { chatService } = ownProps
   return {
     fetchAuth: fetchAuth(chatService, dispatch),
-    checkRegisterValid: (obj) => dispatch(checkRegisterValid(obj)),
-    handleRegister: (data) => handleRegister(chatService, dispatch)(data)
+    handleRegister: (data) => handleRegister(formValid, chatService, dispatch)(data)
   }
 }
 

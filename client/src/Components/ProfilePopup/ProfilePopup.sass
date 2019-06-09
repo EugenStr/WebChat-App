@@ -1,0 +1,105 @@
+@import '../../styles/var-mixins'
+
+
+
+.profile-popup
+  background: #d6d6d6
+  position: absolute
+  top: 250%
+  width: 540px
+  left: 33%
+  z-index: 44
+
+  font-size: 15px
+  color: $black-blue
+  font-weight: 500
+  +border-radius(10px)
+  border: 2px solid $black-blue
+
+.profile-popup p
+  margin-left: 40px
+  margin-top: 10px
+  padding-bottom: 20px
+  font-size: 24px
+  color: $black-blue
+
+
+
+
+
+.label-name
+  margin-left: 46px
+
+.label-surname
+  margin-left: 10px
+
+.label-avatar
+  margin-left: 26px
+
+
+.profile-popup__input
+  padding-left: 10px
+  font-size: 15px
+  margin-left: 10px
+  width: 190px
+  height: 25px
+  border: 1px solid #f2f2f2
+  +border-radius(5px)
+  margin-bottom: 10px
+
+
+.profile-popup__avatar
+  width: 260px
+
+
+.submit-changes
+  margin-left: 50px
+  margin-top: 5px
+  margin-bottom: 15px
+  background: $orange
+  border: none
+  color: $black-blue
+  padding: 5px 15px
+  font-size: 16px
+  +border-radius(25px)
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, .2)
+  font-weight: bold
+
+.popup-user
+  position: absolute
+  width: 110px
+  height: 110px
+  border: 2px solid $black-blue
+  top: 50px
+  right: 28px
+
+
+.close
+  position: absolute
+  right: 25px
+  top: 10px
+  width: 32px
+  height: 32px
+  opacity: 0.3
+  cursor: pointer
+
+
+.close:hover
+  opacity: 1
+
+
+.close:before, .close:after
+  position: absolute
+  left: 15px
+  content: ' '
+  height: 33px
+  width: 2px
+  background-color: #333
+
+
+.close:before
+  transform: rotate(45deg)
+
+
+.close:after
+  transform: rotate(-45deg)
