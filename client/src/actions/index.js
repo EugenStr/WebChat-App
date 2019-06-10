@@ -1,5 +1,3 @@
-
-
 const authSuccess = () => {
   return {
     type: 'FETCH_AUTH_SUCCESS'
@@ -139,11 +137,78 @@ const userPanelToogle = () => {
   }
 }
 
+const profileEditToogle = () => {
+  return {
+    type: 'PROFILE_EDIT_TOOGLE'
+  }
+}
+
+const patchUserDataRequest = () => {
+  return {
+    type: 'PATCH_USERDATA_REQUEST'
+  }
+}
+
+const patchUserDataSuccess = () => {
+  return {
+    type: 'PATCH_USERDATA_SUCCESS'
+  }
+}
+
+const patchUserDataError = () => {
+  return {
+    type: 'PATCH_USERDATA_FAILURE'
+  }
+}
+
+const patchUserData = (chatService, dispatch) => (data, currentUser) => {
+
+    dispatch(patchUserDataRequest())
+    const emailRegular = /http:\/\/.+?\.jpg|jpeg/gi
+    let checkData = {
+      name: data.name,
+      surname: data.surname,
+      avatar: data.avatar,
+      id: currentUser._id
+    }
+
+    if (data.name.length === 0) {
+        checkData.name = currentUser.name
+    }
+
+    if (data.surname.length === 0) {
+        checkData.surname = currentUser.name
+    }
+
+    if (!emailRegular.test(data.avatar)) {
+        checkData.avatar = currentUser.avatar
+    }
+    // const getCurrentUser = (chatService, dispatch) => () => {
+    //   dispatch(getUserRequest())
+    //   chatService.getCurrentUser()
+    //              .then((data) => dispatch(getUserSuccess(data.data[0])))
+    //              .catch(() => dispatch(getUserError()))
+    // }
+    chatService.patchUserData(checkData)
+               .then(() => {
+                chatService.getCurrentUser()
+                           .then((data) => dispatch(getUserSuccess(data.data[0])))
+                           .catch(() => dispatch(getUserError()))
+               })
+               .catch(() => {
+                 dispatch(patchUserDataError())
+                 alert('Error')
+               })
+}
+
 export {
   fetchAuth,
   handleLogin,
   handleRegister,
   getCurrentUser,
   logOut,
-  userPanelToogle
+  userPanelToogle,
+  profileEditToogle,
+  patchUserData
+
 }

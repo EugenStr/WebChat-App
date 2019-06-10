@@ -31,4 +31,11 @@ export default class ChatService {
 
     return res
   }
+
+  async patchUserData(data) {
+
+    const res = await axios.patch('/home/profile', data)
+
+    return res
+  }
 }

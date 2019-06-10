@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {userPanelToogle} from '../../actions'
+import {userPanelToogle, profileEditToogle, logOut} from '../../actions'
 import Header from './Header'
+import withChatService from '../hoc/withChatService'
 
 class HeaderContainer extends React.Component {
 
@@ -13,12 +14,17 @@ class HeaderContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({currentUser, userPanelisOpen}) => {
-  return {currentUser, userPanelisOpen}
+const mapStateToProps = ({currentUser, userPanelisOpen, profilePopupisOpen}) => {
+  return {currentUser, userPanelisOpen, profilePopupisOpen}
 }
 
-const mapDispatchToProps = {
-  userPanelToogle
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { chatService } = ownProps
+   return {
+    userPanelToogle: () => dispatch(userPanelToogle()),
+    profileEditToogle: () => dispatch(profileEditToogle()),
+    logOut: logOut(chatService, dispatch)
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default withChatService()(connect(mapStateToProps, mapDispatchToProps)(HeaderContainer))

@@ -1,0 +1,100 @@
+@keyframes lds-gear {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-gear {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.lds-css-small {
+  margin-top: 80px;
+  margin-left: 240px
+}
+
+.lds-gear-small > div {
+  -webkit-transform-origin: 100px 100px;
+  transform-origin: 100px 100px;
+  -webkit-animation: lds-gear 3.4s infinite linear;
+  animation: lds-gear 3.4s infinite linear;
+  position: relative;
+}
+.lds-gear-small > div div {
+  position: absolute;
+  width: 26px;
+  height: 192px;
+  background: #f7a324;
+  left: 100px;
+  top: 100px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.lds-gear-small > div div:nth-child(1) {
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+}
+.lds-gear-small > div div:nth-child(3) {
+  -webkit-transform: translate(-50%, -50%) rotate(30deg);
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+.lds-gear-small > div div:nth-child(4) {
+  -webkit-transform: translate(-50%, -50%) rotate(60deg);
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+.lds-gear-small > div div:nth-child(5) {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.lds-gear-small > div div:nth-child(6) {
+  -webkit-transform: translate(-50%, -50%) rotate(120deg);
+  transform: translate(-50%, -50%) rotate(120deg);
+}
+.lds-gear-small > div div:nth-child(7) {
+  -webkit-transform: translate(-50%, -50%) rotate(150deg);
+  transform: translate(-50%, -50%) rotate(150deg);
+}
+.lds-gear-small > div div:nth-child(8) {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  border-radius: 50%;
+}
+.lds-gear-small {
+  width: 40px !important;
+  height: 40px !important;
+  -webkit-transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+  transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+}
+
+.spinner-dackground {
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  border-radius: 8px;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}

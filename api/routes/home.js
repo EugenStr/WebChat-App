@@ -22,9 +22,7 @@ router.get('/aside', (req, res) => {
 router.patch('/profile', (req, res) => {
   User.update({_id: req.body.id}, {$set: {name: req.body.name, surname: req.body.surname, avatar: req.body.avatar}})
     .then(() => {
-      res.status(200).json({
-        avatar: req.body.avatar
-      })
+      res.status(200).end()
     }).catch(err => {
       res.status(403).json({
         error: err

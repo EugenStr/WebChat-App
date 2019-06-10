@@ -6,7 +6,9 @@ const initialState = {
   isRegistered: null,
   emailIsBusy: null,
   currentUser: {},
-  userPanelisOpen: false
+  userPanelisOpen: false,
+  profilePopupisOpen: false,
+  userDataEditLoading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +36,7 @@ const reducer = (state = initialState, action) => {
         isLogged: true,
         loading: false
       }
+
     case 'FAILURE_LOGIN_POST' :
       return {
         ...state,
@@ -75,6 +78,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLogged: true,
         loading: false,
+        userDataEditLoading: false,
         currentUser: action.payload
       }
 
@@ -89,7 +93,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLogged: false,
-        loading: false
+        loading: false,
+        userDataEditLoading: false
       }
 
     case 'LOGOUT_SUCCESS' :
@@ -103,6 +108,32 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userPanelisOpen: !state.userPanelisOpen
+      }
+
+    case 'PROFILE_EDIT_TOOGLE' :
+      return {
+        ...state,
+        userPanelisOpen: false,
+        profilePopupisOpen: !state.profilePopupisOpen
+      }
+
+
+    case 'PATCH_USERDATA_REQUEST' :
+      return {
+        ...state,
+        userDataEditLoading: true
+      }
+
+    case 'PATCH_USERDATA_SUCCESS' :
+      return {
+        ...state,
+        userDataEditLoading: false
+      }
+
+    case 'PATCH_USERDATA_FAILURE' :
+      return {
+        ...state,
+        userDataEditLoading: false
       }
 
     default:

@@ -1,13 +1,13 @@
 import React from 'react';
 import HeaderProfile from '../HeaderProfile/HeaderProfile'
-import ProfilePopup from '../ProfilePopup/ProfilePopup'
-import UserPanelContainer from '../UserPanel/UserPanelContainer'
+import ProfilePopupContainer  from '../ProfilePopup/ProfilePopupContainer'
+import UserPanel from '../UserPanel/UserPanel'
+
 import Logo from '../../img/Android_O_Preview_Logo.png'
 import './Header.sass'
 
 
-const Header = ({currentUser, userPanelisOpen, userPanelToogle}) => {
-
+const Header = ({currentUser, userPanelisOpen, userPanelToogle, profilePopupisOpen, profileEditToogle, logOut}) => {
     return (
       <div className="header-wrapper">
         <div className="header-logo">
@@ -15,8 +15,10 @@ const Header = ({currentUser, userPanelisOpen, userPanelToogle}) => {
           <p className="header-auth__title">Web<span>Chat</span>
           </p>
         </div>
+
         <HeaderProfile currentUser={currentUser} userPanelToogle={userPanelToogle}/>
-        {userPanelisOpen ? <UserPanelContainer /> : ''}
+        {userPanelisOpen ? <UserPanel profileEditToogle={profileEditToogle} logout={logOut}  /> : ''}
+        {profilePopupisOpen ? <ProfilePopupContainer /> : ''}
       </div>
     )
 }
