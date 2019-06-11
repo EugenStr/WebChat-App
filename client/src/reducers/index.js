@@ -8,7 +8,8 @@ const initialState = {
   currentUser: {},
   userPanelisOpen: false,
   profilePopupisOpen: false,
-  userDataEditLoading: false
+  userDataEditLoading: false,
+  allUsers: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -124,13 +125,27 @@ const reducer = (state = initialState, action) => {
         userDataEditLoading: true
       }
 
-    case 'PATCH_USERDATA_SUCCESS' :
+    case 'PATCH_USERDATA_FAILURE' :
       return {
         ...state,
         userDataEditLoading: false
       }
 
-    case 'PATCH_USERDATA_FAILURE' :
+    case 'FETCH_USERS_REQUEST' :
+      return {
+        ...state,
+        userDataEditLoading: true
+      }
+
+    case 'FETCH_USERS_SUCCESS' :
+    console.log(1)
+      return {
+        ...state,
+        userDataEditLoading: false,
+        allUsers: action.payload
+      }
+
+    case 'FETCH_USERS_FAILURE' :
       return {
         ...state,
         userDataEditLoading: false

@@ -118,11 +118,6 @@ const logoutSuccess = () => {
     }
 }
 
-const logoutError = () => {
-    return {
-      type: 'LOGOUT_ERROR'
-    }
-}
 
 const logOut = (chatService, dispatch) => () => {
   chatService.logout()
@@ -149,12 +144,6 @@ const patchUserDataRequest = () => {
   }
 }
 
-const patchUserDataSuccess = () => {
-  return {
-    type: 'PATCH_USERDATA_SUCCESS'
-  }
-}
-
 const patchUserDataError = () => {
   return {
     type: 'PATCH_USERDATA_FAILURE'
@@ -162,34 +151,8 @@ const patchUserDataError = () => {
 }
 
 const patchUserData = (chatService, dispatch) => (data, currentUser) => {
-
     dispatch(patchUserDataRequest())
-    const emailRegular = /http:\/\/.+?\.jpg|jpeg/gi
-    let checkData = {
-      name: data.name,
-      surname: data.surname,
-      avatar: data.avatar,
-      id: currentUser._id
-    }
-
-    if (data.name.length === 0) {
-        checkData.name = currentUser.name
-    }
-
-    if (data.surname.length === 0) {
-        checkData.surname = currentUser.name
-    }
-
-    if (!emailRegular.test(data.avatar)) {
-        checkData.avatar = currentUser.avatar
-    }
-    // const getCurrentUser = (chatService, dispatch) => () => {
-    //   dispatch(getUserRequest())
-    //   chatService.getCurrentUser()
-    //              .then((data) => dispatch(getUserSuccess(data.data[0])))
-    //              .catch(() => dispatch(getUserError()))
-    // }
-    chatService.patchUserData(checkData)
+    chatService.patchUserData(data, currentUser)
                .then(() => {
                 chatService.getCurrentUser()
                            .then((data) => dispatch(getUserSuccess(data.data[0])))
@@ -201,6 +164,33 @@ const patchUserData = (chatService, dispatch) => (data, currentUser) => {
                })
 }
 
+const getUsersRequest = () => {
+  return {
+    type: 'FETCH_USERS_REQUEST'
+  }
+}
+
+const getUsersSuccess = (users) => {
+  return {
+    type: 'FETCH_USERS_SUCCESS',
+    payload: users
+  }
+}
+
+const getUsersFailure = () => {
+  return {
+    type: 'FETCH_USERS_FAILURE'
+  }
+}
+
+
+const fetchUsers = (chatService, dispatch) => () => {
+  dispatch(getUsersRequest())
+  chatService.getAllUsers()
+             .then(res => dispatch(getUsersSuccess(res.data)))
+             .catch(() => dispatch(getUsersFailure()))
+}
+
 export {
   fetchAuth,
   handleLogin,
@@ -209,6 +199,7 @@ export {
   logOut,
   userPanelToogle,
   profileEditToogle,
-  patchUserData
+  patchUserData,
+  fetchUsers
 
 }

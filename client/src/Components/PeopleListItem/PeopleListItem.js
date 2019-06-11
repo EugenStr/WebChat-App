@@ -1,4 +1,5 @@
 import React from 'react';
+import './PeopleListItem.sass'
 
 const UserItem = (props) => {
   return (

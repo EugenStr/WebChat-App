@@ -32,10 +32,31 @@ export default class ChatService {
     return res
   }
 
-  async patchUserData(data) {
+  async patchUserData(newData, currentData) {
+
+    let data = {
+        name: newData.name,
+        surname: newData.surname,
+        avatar: newData.avatar,
+        id: currentData._id
+      }
+
+    if (newData.name.length === 0) {
+        data.name = currentData.name
+    }
+
+    if (newData.surname.length === 0) {
+        data.surname = currentData.surname
+    }
 
     const res = await axios.patch('/home/profile', data)
 
+    return res
+  }
+
+  async getAllUsers() {
+    const res = await axios.get('/home/aside');
+    
     return res
   }
 }
