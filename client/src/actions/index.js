@@ -191,6 +191,68 @@ const fetchUsers = (chatService, dispatch) => () => {
              .catch(() => dispatch(getUsersFailure()))
 }
 
+
+const addedNewMessage = (message) => {
+  return {
+    type: 'ADD_NEW_MESSAGE',
+    payload: message
+  }
+}
+
+const createNewMessage = (chatService, socket, dispatch) => (message, currentUser) => {
+  const date = new Date().toLocaleString();
+  const data = { message, sender: currentUser.name, avatar: currentUser.avatar, date}
+    chatService.addMessage(data)
+               .then(() => socket.emit('chat', data))
+               .catch(() => alert('Error'))
+}
+
+const emptyMessage = () => {
+  return {
+    type: 'EMPTY_MESSAGE'
+  }
+}
+
+const postMessage = (chatService, socket, dispatch) => (message, currentUser) => {
+  if (message.length === 0) {
+    dispatch(emptyMessage())
+  } else {
+    createNewMessage(chatService, socket, dispatch)(message, currentUser)
+  }
+}
+
+const startWriteMessage = () => {
+  return {
+    type: 'START_WRITE_MESSAGE'
+  }
+}
+const getMessagesRequest = () => {
+  return {
+    type: 'FETCH_MESSAGES_REQUEST'
+  }
+}
+
+const getMessagesSuccess = (data) => {
+  return {
+    type: 'FETCH_MESSAGES_SUCCESS',
+    payload: data
+  }
+}
+
+const getMessagesError = () => {
+  return {
+    type: 'FETCH_MESSAGES_FAILURE'
+  }
+}
+
+
+const fetchMessagesHistory = (chatService, dispatch) => () => {
+  dispatch(getMessagesRequest())
+  chatService.getMessages()
+             .then(res => dispatch(getMessagesSuccess(res.data)))
+             .catch((err) => dispatch(getMessagesError()))
+}
+
 export {
   fetchAuth,
   handleLogin,
@@ -200,6 +262,9 @@ export {
   userPanelToogle,
   profileEditToogle,
   patchUserData,
-  fetchUsers
-
+  fetchUsers,
+  addedNewMessage,
+  postMessage,
+  fetchMessagesHistory,
+  startWriteMessage
 }

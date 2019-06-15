@@ -29,7 +29,7 @@ const  ProfilePopup  = ({currentUser, inputs, handleChange, profileEditToogle, p
               onChange={handleChange}/></label><br />
             <button className="submit-changes" onClick={patchUserData}>Сохранить изменения!</button>
           <img className="popup-user" alt="user-avatar" src={currentUser.avatar} />
-          {userDataEditLoading ? <SmallSpinner /> : ''}
+          {userDataEditLoading ? <SmallSpinner background='true'/> : ''}
         </div>
       </div>
     )

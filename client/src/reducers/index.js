@@ -9,10 +9,15 @@ const initialState = {
   userPanelisOpen: false,
   profilePopupisOpen: false,
   userDataEditLoading: false,
-  allUsers: []
+  allUsers: [],
+  newMessages: [],
+  messagesHistory: [],
+  messagesLoading: false,
+  messageIsEmpty: false
 }
 
 const reducer = (state = initialState, action) => {
+
   switch (action.type) {
     case 'FETCH_AUTH_SUCCESS' :
       return {
@@ -101,6 +106,7 @@ const reducer = (state = initialState, action) => {
     case 'LOGOUT_SUCCESS' :
       return {
         ...state,
+        userPanelisOpen: false,
         isLogged: false
       }
 
@@ -138,7 +144,6 @@ const reducer = (state = initialState, action) => {
       }
 
     case 'FETCH_USERS_SUCCESS' :
-    console.log(1)
       return {
         ...state,
         userDataEditLoading: false,
@@ -149,6 +154,43 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userDataEditLoading: false
+      }
+
+    case 'ADD_NEW_MESSAGE' :
+      return {
+        ...state,
+        newMessages: [...state.newMessages, action.payload]
+      }
+
+    case 'FETCH_MESSAGES_REQUEST' :
+      return {
+        ...state,
+        messagesLoading: true
+      }
+
+    case 'FETCH_MESSAGES_SUCCESS' :
+      return {
+        ...state,
+        messagesLoading: false,
+        messagesHistory: action.payload
+      }
+
+    case 'FETCH_MESSAGES_FAILURE' :
+      return {
+        ...state,
+        messagesLoading: false
+      }
+
+    case 'EMPTY_MESSAGE' :
+      return {
+        ...state,
+        messageIsEmpty: true
+      }
+
+    case 'START_WRITE_MESSAGE' :
+      return {
+        ...state,
+        messageIsEmpty: false
       }
 
     default:

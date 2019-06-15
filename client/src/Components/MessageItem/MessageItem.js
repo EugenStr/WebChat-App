@@ -1,7 +1,7 @@
 import React from 'react';
+import './MessageItem.sass'
 
-
-const Message = (props) => {
+const MessageItem = (props) => {
 	return (
 		<div className='message' key={props.id}>
 			<img className="avatar message-avatar" src={props.avatar} alt={props.name}></img>
@@ -15,4 +15,4 @@ const Message = (props) => {
 }
 
 
-export default Message
+export default MessageItem

@@ -2,14 +2,26 @@ import React from 'react';
 import ChatWrapper from './ChatWrapper'
 import withChatService from '../hoc/withChatService'
 import { connect } from 'react-redux'
-import { getCurrentUser } from '../../actions'
+import { getCurrentUser, addedNewMessage } from '../../actions'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Spinner from '../Spinner/Spinner'
+import withSockets from '../hoc/withSockets'
 
 class ChatWrapperContainer extends React.Component {
   componentDidMount() {
     this.props.getCurrentUser()
+    const {socket, addedNewMessage} = this.props
+    socket.on('chat', data => {
+      addedNewMessage(data)
+    })
+  }
+
+  componentWillUnmount() {
+      const {socket, addedNewMessage} = this.props
+      socket.off('chat', data => {
+        addedNewMessage(data)
+      })
   }
 
   render() {
@@ -38,9 +50,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const {chatService} = ownProps;
 
   return {
-    getCurrentUser: getCurrentUser(chatService, dispatch)
+    getCurrentUser: getCurrentUser(chatService, dispatch),
+    addedNewMessage: (message) => dispatch(addedNewMessage(message))
   }
 }
 
-
-export default withChatService()(connect(mapStateToProps, mapDispatchToProps)(ChatWrapperContainer))
+export default withChatService()(withSockets()(connect(mapStateToProps, mapDispatchToProps)(ChatWrapperContainer)))

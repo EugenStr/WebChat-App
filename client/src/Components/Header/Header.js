@@ -24,6 +24,4 @@ const Header = ({currentUser, userPanelisOpen, userPanelToogle, profilePopupisOp
 }
 
 
-// <ProfilePopup />
-
 export default Header

@@ -28,8 +28,10 @@
 }
 
 .lds-css-small {
-  margin-top: 80px;
-  margin-left: 240px
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .lds-gear-small > div {

@@ -49,6 +49,10 @@ export default class ChatService {
         data.surname = currentData.surname
     }
 
+    if (!/^http(s)?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(newData.avatar)) {
+        data.avatar = currentData.avatar
+    }
+
     const res = await axios.patch('/home/profile', data)
 
     return res
@@ -56,7 +60,20 @@ export default class ChatService {
 
   async getAllUsers() {
     const res = await axios.get('/home/aside');
-    
+
     return res
   }
+
+  async addMessage(data) {
+    const res = await axios.post('/home/chat', data);
+
+    return res
+  }
+
+  async getMessages() {
+    const res = await axios.get('/home/chat');
+    return res
+  }
+
+
 }

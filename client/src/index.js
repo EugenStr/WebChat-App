@@ -8,15 +8,21 @@ import { BrowserRouter as Router} from 'react-router-dom'
 import ChatService from './services/ChatService'
 import store from './store'
 import {ChatServiceProvider} from './Components/ChatServiceContext/ChatServiceContext'
+import {SocketsProvider} from './Components/ChatServiceContext/SocketsContext'
+import openSocket from 'socket.io-client';
 
+const socket = openSocket('localhost:5000');
 const requests = new ChatService();
+
 
 ReactDOM.render((
   <Provider store={store}>
     <ChatServiceProvider value={requests}>
-      <Router>
-        <App />
-      </Router>
+      <SocketsProvider value={socket}>
+        <Router>
+          <App />
+        </Router>
+      </SocketsProvider>
     </ChatServiceProvider>
   </Provider>
 
