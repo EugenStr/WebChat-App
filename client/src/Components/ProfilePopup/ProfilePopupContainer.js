@@ -3,8 +3,17 @@ import ProfilePopup from './ProfilePopup'
 import { connect } from 'react-redux'
 import {profileEditToogle, patchUserData} from '../../actions'
 import withChatService from '../hoc/withChatService'
+import PropTypes from 'prop-types'
 
 class ProfilePopupContainer extends React.Component {
+
+  static propTypes = {
+    chatService: PropTypes.object,
+    currentUser: PropTypes.object,
+    patchUserData: PropTypes.func,
+    profileEditToogle: PropTypes.func,
+    userDataEditLoading: PropTypes.bool
+  }
 
   state = {
     name: this.props.currentUser.name,

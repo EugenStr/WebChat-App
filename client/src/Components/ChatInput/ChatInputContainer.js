@@ -5,8 +5,18 @@ import {connect} from 'react-redux'
 import {postMessage, startWriteMessage} from '../../actions'
 import withSockets from '../hoc/withSockets'
 import withChatService from '../hoc/withChatService'
+import PropTypes from 'prop-types'
 
 class ChatInputContainer extends React.Component {
+
+  static propTypes = {
+    currentUser: PropTypes.object,
+    chatService: PropTypes.object,
+    messageIsEmpty: PropTypes.bool,
+    postMessage: PropTypes.func,
+    startWriteMessage: PropTypes.func
+  }
+
   state = {
       message: ''
     }
@@ -43,6 +53,7 @@ class ChatInputContainer extends React.Component {
 
 
   render() {
+
     return (
       <ChatInput createMessage={this.createMessage} postPressEnter={this.postPressEnter} handleChange={this.handleChange} isEmpty={this.props.messageIsEmpty} message={this.state.message}/>
     )

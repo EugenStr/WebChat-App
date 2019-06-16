@@ -8,12 +8,19 @@ import PropTypes from 'prop-types'
 
 
 class ChooseContainer extends React.Component {
+
+  static propTypes = {
+    chatService: PropTypes.object,
+    fetchAuth: PropTypes.func,
+    isLogged: PropTypes.bool
+  }
+
   componentDidMount() {
     this.props.fetchAuth()
   }
 
   render() {
-    
+
     const { isLogged } = this.props
 
     if (isLogged) {

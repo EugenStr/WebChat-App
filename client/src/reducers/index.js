@@ -13,7 +13,8 @@ const initialState = {
   newMessages: [],
   messagesHistory: [],
   messagesLoading: false,
-  messageIsEmpty: false
+  messageIsEmpty: false,
+  appError: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -191,6 +192,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         messageIsEmpty: false
+      }
+
+    case 'OCCURRED_ERROR' :
+      return {
+        ...state,
+        appError: true
       }
 
     default:

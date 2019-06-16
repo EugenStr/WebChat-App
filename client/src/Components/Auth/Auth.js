@@ -14,12 +14,10 @@ const Auth = () => {
 							<Route path="/auth" exact component={ChooseContainer} />
 							<Route path="/auth/login" component={LoginContainer} />
 							<Route path="/auth/register" component={RegisterContainer} />
+							<Route render={() => <h1 className="error-404">404: Страница не найдена</h1>} />
 						</Switch>
 				</div>
 		)
 }
 
 export default Auth
-
-// <Route exact path='/auth/register' component={Register} />
-// <Route exact path='/auth/login' component={Login} />

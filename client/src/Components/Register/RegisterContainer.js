@@ -9,13 +9,25 @@ import PropTypes from 'prop-types'
 import Spinner from '../Spinner/Spinner'
 
 class RegisterContainer extends React.Component {
+
+  static propTypes = {
+    chatService: PropTypes.object,
+    emailIsBusy: PropTypes.bool,
+    fetchAuth: PropTypes.func,
+    handleRegister: PropTypes.func,
+    registerValid: PropTypes.array,
+    isLogged: PropTypes.bool,
+    isRegistered: PropTypes.bool,
+    loading: PropTypes.bool
+  }
+
     state = {
       name: '',
       surname: '',
       password: '',
       confirmPass: '',
       email: ''
-}
+    }
 
   componentDidMount() {
     this.props.fetchAuth()
@@ -30,6 +42,7 @@ class RegisterContainer extends React.Component {
   }
 
   render() {
+        console.log(this.props)
     const { isLogged, isRegistered, emailIsBusy, loading, handleRegister} = this.props
     if (isLogged) {
       return <Redirect to="/" />

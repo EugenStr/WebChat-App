@@ -9,7 +9,17 @@ import Spinner from '../Spinner/Spinner'
 import withSockets from '../hoc/withSockets'
 
 class ChatWrapperContainer extends React.Component {
+
+  static propTypes = {
+    chatService: PropTypes.object,
+    getCurrentUser: PropTypes.func,
+    isLogged: PropTypes.bool,
+    loading: PropTypes.bool,
+    addedNewMessage: PropTypes.func
+  }
+
   componentDidMount() {
+
     this.props.getCurrentUser()
     const {socket, addedNewMessage} = this.props
     socket.on('chat', data => {
@@ -29,7 +39,7 @@ class ChatWrapperContainer extends React.Component {
     const {isLogged, loading} = this.props
 
     if (isLogged === false) {
-      return <Redirect to='/auth/login' />
+      return <Redirect to='/auth' />
     }
 
     if (loading) {

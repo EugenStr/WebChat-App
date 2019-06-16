@@ -122,7 +122,7 @@ const logoutSuccess = () => {
 const logOut = (chatService, dispatch) => () => {
   chatService.logout()
              .then((data) => dispatch(logoutSuccess()))
-             .catch((err) => alert(`Error: ${err}`))
+             .catch((err) => dispatch(errorInApp()))
 }
 
 
@@ -160,6 +160,7 @@ const patchUserData = (chatService, dispatch) => (data, currentUser) => {
                })
                .catch(() => {
                  dispatch(patchUserDataError())
+                 dispatch(errorInApp())
                  alert('Error')
                })
 }
@@ -204,7 +205,7 @@ const createNewMessage = (chatService, socket, dispatch) => (message, currentUse
   const data = { message, sender: currentUser.name, avatar: currentUser.avatar, date}
     chatService.addMessage(data)
                .then(() => socket.emit('chat', data))
-               .catch(() => alert('Error'))
+               .catch(() => dispatch(errorInApp()))
 }
 
 const emptyMessage = () => {
@@ -250,7 +251,16 @@ const fetchMessagesHistory = (chatService, dispatch) => () => {
   dispatch(getMessagesRequest())
   chatService.getMessages()
              .then(res => dispatch(getMessagesSuccess(res.data)))
-             .catch((err) => dispatch(getMessagesError()))
+             .catch((err) => {
+               dispatch(getMessagesError())
+               dispatch(errorInApp())
+             })
+}
+
+const errorInApp = () => {
+  return {
+    type: 'OCCURRED_ERROR'
+  }
 }
 
 export {
@@ -266,5 +276,6 @@ export {
   addedNewMessage,
   postMessage,
   fetchMessagesHistory,
-  startWriteMessage
+  startWriteMessage,
+  errorInApp
 }

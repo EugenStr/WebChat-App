@@ -8,6 +8,16 @@ import PropTypes from 'prop-types'
 import Spinner from '../Spinner/Spinner'
 
 class LoginContainer extends React.Component {
+
+	static propTypes = {
+    chatService: PropTypes.object,
+    fetchAuth: PropTypes.func,
+    handleLogin: PropTypes.func,
+    isLogged: PropTypes.bool,
+    loginError: PropTypes.bool,
+    loading: PropTypes.bool
+  }
+
 	state = {
 		email: '',
 		password: ''

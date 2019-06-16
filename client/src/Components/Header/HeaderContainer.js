@@ -7,7 +7,18 @@ import withChatService from '../hoc/withChatService'
 
 class HeaderContainer extends React.Component {
 
+  static propTypes = {
+    chatService: PropTypes.object,
+    currentUser: PropTypes.object,
+    logOut: PropTypes.func,
+    profileEditToogle: PropTypes.func,
+    profilePopupisOpen: PropTypes.bool,
+    userPanelToogle: PropTypes.func,
+    userPanelisOpen: PropTypes.bool
+  }
+
   render() {
+
     return (
       <Header {...this.props}/>
     )
